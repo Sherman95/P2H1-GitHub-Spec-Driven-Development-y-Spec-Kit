@@ -1,16 +1,42 @@
-# React + Vite
+# Pokedex Atlas - P2H1
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+App en React + Vite creada con Spec Driven Development y Spec Kit. Consume PokeAPI para listar pokemon, ver detalles y armar un equipo persistido en localStorage.
 
-Currently, two official plugins are available:
+## Demo
+- GitHub Pages: https://sherman95.github.io/P2H1-GitHub-Spec-Driven-Development-y-Spec-Kit/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Funcionalidades
+- Lista de pokemon (60) con busqueda en tiempo real.
+- Detalle con imagen oficial, tipos, altura, peso, habilidades y stats.
+- Equipo local con favoritos y persistencia en localStorage.
+- Estados de carga y error.
 
-## React Compiler
+## Stack
+- React + Vite
+- Fetch API
+- gh-pages para deploy
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Especificaciones
+Las especificaciones y el plan de trabajo estan en el folder specs:
+- specs/01-product-spec.md
+- specs/02-ux-spec.md
+- specs/03-technical-spec.md
+- specs/04-task-plan.md
 
-## Expanding the ESLint configuration
+## Scripts
+- npm run dev: desarrollo local
+- npm run build: build de produccion
+- npm run deploy: publica a GitHub Pages
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Desarrollo local
+1. npm install
+2. npm run dev
+
+## Deploy a GitHub Pages
+1. npm run deploy
+2. En GitHub: Settings -> Pages -> Branch: gh-pages / root
+
+## API
+- Lista: https://pokeapi.co/api/v2/pokemon?limit=60
+- Detalle: https://pokeapi.co/api/v2/pokemon/{id}
+- Sprites: https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{id}.png
