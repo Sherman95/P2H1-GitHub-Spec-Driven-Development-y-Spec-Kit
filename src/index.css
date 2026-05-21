@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg: #f3efe7;
+  --panel: #fdfbf6;
+  --card-bg: #fff8ee;
+  --card-media: #f4e7d8;
+  --text: #3c463b;
+  --text-strong: #1b2a20;
+  --text-muted: #6a7565;
+  --border: rgba(31, 61, 46, 0.15);
+  --accent: #1f5f3b;
+  --accent-contrast: #f5f2e7;
+  --tab-bg: #f0e7d7;
+  --tab-border: rgba(31, 61, 46, 0.3);
+  --badge-bg: #1f5f3b;
+  --badge-text: #fdfbf6;
+  --chip-bg: rgba(31, 95, 59, 0.15);
+  --chip-text: #1f5f3b;
+  --input-bg: #fffaf1;
+  --shadow-soft: 0 12px 24px -16px rgba(20, 30, 24, 0.35);
+  --shadow-strong: 0 20px 50px -32px rgba(20, 30, 24, 0.55);
+  --font-sans: 'Space Grotesk', 'Segoe UI', sans-serif;
+  --font-display: 'Fraunces', serif;
+
+  font: 16px/1.6 var(--font-sans);
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at 20% 20%, rgba(255, 213, 120, 0.25), transparent 45%),
+    radial-gradient(circle at 80% 10%, rgba(46, 93, 65, 0.18), transparent 40%),
+    linear-gradient(140deg, #f8f1e7 0%, #f0e9dd 50%, #efe4d2 100%);
+  min-height: 100vh;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(rgba(31, 61, 46, 0.08) 1px, transparent 1px);
+  background-size: 22px 22px;
+  opacity: 0.25;
+  pointer-events: none;
+  z-index: -1;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  color: var(--text-strong);
+}
+
+button,
+input {
+  font-family: inherit;
+}
+
+input:focus,
+button:focus-visible {
+  outline: 2px solid rgba(31, 95, 59, 0.4);
+  outline-offset: 2px;
+}
