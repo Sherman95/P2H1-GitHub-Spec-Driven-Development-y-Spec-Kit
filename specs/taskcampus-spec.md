@@ -1,23 +1,23 @@
 # Especificacion del sistema TaskCampus
 
 ## Problema
-Los estudiantes necesitan organizar sus tareas academicas.
+Los estudiantes necesitan gestionar tareas y asignaturas en una plataforma segura, moderna y con persistencia real.
 
 ## Objetivo
-Desarrollar una aplicacion web para registrar, consultar, actualizar y eliminar tareas.
+Construir una aplicacion web con autenticacion JWT, CRUD completo y dashboard, siguiendo Spec Driven Development.
 
 ## Usuarios
 Estudiantes universitarios.
 
 ## Alcance funcional
-- Registrar tarea con: titulo, descripcion, asignatura, fecha de entrega, prioridad y estado.
-- Listar todas las tareas.
-- Filtrar por estado, prioridad y asignatura.
-- Editar una tarea.
-- Eliminar una tarea.
-- Mostrar resumen: total, pendientes, finalizadas y alta prioridad.
+- Registro y login con JWT.
+- CRUD de asignaturas.
+- CRUD de tareas con filtros avanzados.
+- Resumen y dashboard.
+- Dark mode y UI responsive.
+- Fallback offline si el backend no esta disponible.
 
 ## Reglas de negocio
-- Prioridad: baja, media o alta.
-- Estado: pendiente, en proceso o finalizada.
-- Fecha de entrega en formato ISO (YYYY-MM-DD).
+- Prioridad: low, medium, high.
+- Estado: pending, in_progress, completed, overdue.
+- Si due_date < hoy y status != completed, marcar overdue.

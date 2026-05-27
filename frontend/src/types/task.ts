@@ -1,11 +1,12 @@
 export type TaskPriority = "low" | "medium" | "high";
-export type TaskStatus = "pending" | "in_progress" | "finished";
+export type TaskStatus = "pending" | "in_progress" | "completed" | "overdue";
 
 export type Task = {
   id: string;
+  user_id: string;
+  subject_id: string | null;
   title: string;
-  description: string;
-  subject: string;
+  description: string | null;
   due_date: string;
   priority: TaskPriority;
   status: TaskStatus;
@@ -13,17 +14,28 @@ export type Task = {
   updated_at: string;
 };
 
-export type TaskPayload = Omit<Task, "id" | "created_at" | "updated_at">;
+export type TaskPayload = {
+  subject_id: string | null;
+  title: string;
+  description: string | null;
+  due_date: string;
+  priority: TaskPriority;
+  status: TaskStatus;
+};
 
 export type Summary = {
   total: number;
   pending: number;
-  finished: number;
-  highPriority: number;
+  in_progress: number;
+  completed: number;
+  overdue: number;
+  high_priority: number;
 };
 
 export type Filters = {
   status?: TaskStatus | "";
   priority?: TaskPriority | "";
-  subject?: string;
+  subject_id?: string | "";
+  search?: string;
+  sort?: string;
 };

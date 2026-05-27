@@ -1,11 +1,7 @@
-from dotenv import load_dotenv
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from .api.routes import get_router
-from .services.dependencies import get_task_service
-
-load_dotenv()
+from .routers import auth, subjects, tasks, users
 
 app = FastAPI(title="TaskCampus API")
 
@@ -17,5 +13,7 @@ app.add_middleware(
     allow_headers=["*"]
 )
 
-task_service = get_task_service()
-app.include_router(get_router(task_service))
+app.include_router(auth.router)
+app.include_router(users.router)
+app.include_router(subjects.router)
+app.include_router(tasks.router)

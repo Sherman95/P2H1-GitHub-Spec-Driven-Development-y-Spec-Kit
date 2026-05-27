@@ -11,151 +11,177 @@
       rel="stylesheet"
     />
   </head>
-  <body class="bg-mist text-ink">
+  <body class="theme-bg">
     <div class="min-h-screen">
       <header class="bg-ink text-white">
         <div class="mx-auto flex max-w-6xl flex-col gap-4 px-6 py-10 md:flex-row md:items-center md:justify-between">
           <div>
             <p class="text-sm uppercase tracking-[0.3em] text-white/70">TaskCampus</p>
-            <h1 class="text-3xl font-semibold md:text-4xl">Gestion de tareas academicas</h1>
-            <p class="mt-2 text-white/80">Organiza tus entregas, prioridades y avances en un solo lugar.</p>
+            <h1 class="text-3xl font-semibold md:text-4xl">Plataforma academica moderna</h1>
+            <p class="mt-2 text-white/80">Gestiona tareas, asignaturas y avances con autenticacion segura.</p>
           </div>
-          <div class="rounded-2xl bg-white/10 px-5 py-4 text-sm text-white/80">
-            <p class="font-semibold text-white">Estado de conexion</p>
-            <p id="connection-status">Verificando...</p>
+          <div class="flex flex-col gap-3 text-sm text-white/80">
+            <div class="rounded-2xl bg-white/10 px-5 py-3">
+              <p class="font-semibold text-white">Estado de conexion</p>
+              <p id="connection-status">Verificando...</p>
+            </div>
+            <button
+              id="theme-toggle"
+              class="rounded-2xl bg-white/10 px-5 py-3 text-left text-sm font-semibold text-white"
+            >
+              Cambiar tema
+            </button>
           </div>
         </div>
       </header>
 
-      <main class="mx-auto flex max-w-6xl flex-col gap-8 px-6 py-10">
-        <section class="grid gap-4 md:grid-cols-4" id="summary-cards">
-          <div class="rounded-2xl bg-white p-5 shadow-sm">
-            <p class="text-sm text-slate">Total tareas</p>
-            <p class="text-2xl font-semibold" id="summary-total">0</p>
+      <main class="mx-auto flex max-w-6xl flex-col gap-10 px-6 py-10">
+        <section id="auth-section" class="grid gap-6 rounded-3xl bg-white p-6 shadow-sm dark:bg-slate-900">
+          <div class="flex flex-wrap items-center justify-between gap-4">
+            <div>
+              <h2 class="text-2xl font-semibold">Acceso TaskCampus</h2>
+              <p class="text-sm text-slate-500 dark:text-slate-300">Inicia sesion o crea tu cuenta.</p>
+            </div>
+            <div class="flex gap-2">
+              <button id="show-login" class="rounded-xl border border-slate/20 px-4 py-2 text-sm">Login</button>
+              <button id="show-register" class="rounded-xl bg-accent px-4 py-2 text-sm font-semibold text-white">Registro</button>
+            </div>
           </div>
-          <div class="rounded-2xl bg-white p-5 shadow-sm">
-            <p class="text-sm text-slate">Pendientes</p>
-            <p class="text-2xl font-semibold" id="summary-pending">0</p>
-          </div>
-          <div class="rounded-2xl bg-white p-5 shadow-sm">
-            <p class="text-sm text-slate">Finalizadas</p>
-            <p class="text-2xl font-semibold" id="summary-finished">0</p>
-          </div>
-          <div class="rounded-2xl bg-white p-5 shadow-sm">
-            <p class="text-sm text-slate">Alta prioridad</p>
-            <p class="text-2xl font-semibold" id="summary-high">0</p>
+          <div class="grid gap-6 md:grid-cols-2">
+            <form id="login-form" class="grid gap-3 hidden">
+              <h3 class="text-lg font-semibold">Login</h3>
+              <input id="login-email" type="email" placeholder="Email" class="rounded-xl border border-slate/20 px-3 py-2" />
+              <input id="login-password" type="password" placeholder="Contrasena" class="rounded-xl border border-slate/20 px-3 py-2" />
+              <button class="rounded-xl bg-ink px-4 py-2 text-sm font-semibold text-white">Ingresar</button>
+            </form>
+            <form id="register-form" class="grid gap-3">
+              <h3 class="text-lg font-semibold">Registro</h3>
+              <input id="register-name" type="text" placeholder="Nombre completo" class="rounded-xl border border-slate/20 px-3 py-2" />
+              <input id="register-email" type="email" placeholder="Email" class="rounded-xl border border-slate/20 px-3 py-2" />
+              <input id="register-password" type="password" placeholder="Contrasena" class="rounded-xl border border-slate/20 px-3 py-2" />
+              <button class="rounded-xl bg-accent px-4 py-2 text-sm font-semibold text-white">Crear cuenta</button>
+            </form>
           </div>
         </section>
 
-        <section class="grid gap-6 lg:grid-cols-[1.1fr,0.9fr]">
-          <div class="rounded-2xl bg-white p-6 shadow-sm">
-            <div class="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
-              <h2 class="text-xl font-semibold">Tareas registradas</h2>
-              <div class="flex flex-wrap gap-3">
-                <select id="filter-status" class="rounded-xl border border-slate/20 px-3 py-2 text-sm">
-                  <option value="">Estado</option>
-                  <option value="pending">Pendiente</option>
-                  <option value="in_progress">En proceso</option>
-                  <option value="finished">Finalizada</option>
-                </select>
-                <select id="filter-priority" class="rounded-xl border border-slate/20 px-3 py-2 text-sm">
-                  <option value="">Prioridad</option>
-                  <option value="low">Baja</option>
-                  <option value="medium">Media</option>
-                  <option value="high">Alta</option>
-                </select>
-                <input
-                  id="filter-subject"
-                  type="text"
-                  placeholder="Asignatura"
-                  class="rounded-xl border border-slate/20 px-3 py-2 text-sm"
-                />
-              </div>
+        <section id="app-section" class="hidden flex flex-col gap-8">
+          <section class="grid gap-4 md:grid-cols-3 lg:grid-cols-6">
+            <div class="rounded-2xl bg-white p-5 shadow-sm dark:bg-slate-900">
+              <p class="text-sm text-slate-500 dark:text-slate-300">Total</p>
+              <p class="text-2xl font-semibold" id="summary-total">0</p>
+            </div>
+            <div class="rounded-2xl bg-white p-5 shadow-sm dark:bg-slate-900">
+              <p class="text-sm text-slate-500 dark:text-slate-300">Pendientes</p>
+              <p class="text-2xl font-semibold" id="summary-pending">0</p>
+            </div>
+            <div class="rounded-2xl bg-white p-5 shadow-sm dark:bg-slate-900">
+              <p class="text-sm text-slate-500 dark:text-slate-300">En progreso</p>
+              <p class="text-2xl font-semibold" id="summary-inprogress">0</p>
+            </div>
+            <div class="rounded-2xl bg-white p-5 shadow-sm dark:bg-slate-900">
+              <p class="text-sm text-slate-500 dark:text-slate-300">Completadas</p>
+              <p class="text-2xl font-semibold" id="summary-completed">0</p>
+            </div>
+            <div class="rounded-2xl bg-white p-5 shadow-sm dark:bg-slate-900">
+              <p class="text-sm text-slate-500 dark:text-slate-300">Vencidas</p>
+              <p class="text-2xl font-semibold text-red-500" id="summary-overdue">0</p>
+            </div>
+            <div class="rounded-2xl bg-white p-5 shadow-sm dark:bg-slate-900">
+              <p class="text-sm text-slate-500 dark:text-slate-300">Alta prioridad</p>
+              <p class="text-2xl font-semibold" id="summary-high">0</p>
+            </div>
+          </section>
+
+          <section class="grid gap-4 md:grid-cols-2">
+            <div class="rounded-2xl bg-white p-5 shadow-sm dark:bg-slate-900">
+              <h3 class="text-sm font-semibold">Tareas por estado</h3>
+              <div id="chart-status" class="mt-4 grid gap-2 text-xs text-slate-500 dark:text-slate-300"></div>
+            </div>
+            <div class="rounded-2xl bg-white p-5 shadow-sm dark:bg-slate-900">
+              <h3 class="text-sm font-semibold">Tareas por prioridad</h3>
+              <div id="chart-priority" class="mt-4 grid gap-2 text-xs text-slate-500 dark:text-slate-300"></div>
+            </div>
+          </section>
+
+          <section class="grid gap-6 lg:grid-cols-[0.7fr,1.3fr]">
+            <div class="rounded-2xl bg-white p-6 shadow-sm dark:bg-slate-900">
+              <h2 class="text-xl font-semibold">Asignaturas</h2>
+              <div id="subject-list" class="mt-4 grid gap-3"></div>
+              <form id="subject-form" class="mt-5 grid gap-3">
+                <input type="hidden" id="subject-id" />
+                <input id="subject-name" type="text" placeholder="Nombre" class="rounded-xl border border-slate/20 px-3 py-2" />
+                <input id="subject-teacher" type="text" placeholder="Docente" class="rounded-xl border border-slate/20 px-3 py-2" />
+                <input id="subject-color" type="color" value="#3B82F6" class="h-10 w-20 rounded-xl border border-slate/20" />
+                <div class="flex gap-2">
+                  <button class="rounded-xl bg-accent px-4 py-2 text-sm font-semibold text-white">Guardar</button>
+                  <button id="subject-reset" type="button" class="rounded-xl border border-slate/20 px-4 py-2 text-sm">Limpiar</button>
+                </div>
+              </form>
             </div>
 
-            <div class="mt-6 grid gap-4" id="task-list"></div>
-          </div>
-
-          <div class="rounded-2xl bg-white p-6 shadow-sm">
-            <h2 class="text-xl font-semibold">Nueva tarea</h2>
-            <p class="text-sm text-slate">Completa los datos para registrar o actualizar.</p>
-
-            <form class="mt-5 grid gap-4" id="task-form">
-              <input type="hidden" id="task-id" />
-              <div>
-                <label class="text-sm font-medium">Titulo</label>
-                <input
-                  id="title"
-                  type="text"
-                  required
-                  class="mt-1 w-full rounded-xl border border-slate/20 px-3 py-2"
-                />
-              </div>
-              <div>
-                <label class="text-sm font-medium">Descripcion</label>
-                <textarea
-                  id="description"
-                  rows="3"
-                  required
-                  class="mt-1 w-full rounded-xl border border-slate/20 px-3 py-2"
-                ></textarea>
-              </div>
-              <div>
-                <label class="text-sm font-medium">Asignatura</label>
-                <input
-                  id="subject"
-                  type="text"
-                  required
-                  class="mt-1 w-full rounded-xl border border-slate/20 px-3 py-2"
-                />
-              </div>
-              <div class="grid gap-4 md:grid-cols-2">
-                <div>
-                  <label class="text-sm font-medium">Fecha de entrega</label>
-                  <input
-                    id="due-date"
-                    type="date"
-                    required
-                    class="mt-1 w-full rounded-xl border border-slate/20 px-3 py-2"
-                  />
-                </div>
-                <div>
-                  <label class="text-sm font-medium">Prioridad</label>
-                  <select id="priority" class="mt-1 w-full rounded-xl border border-slate/20 px-3 py-2">
+            <div class="rounded-2xl bg-white p-6 shadow-sm dark:bg-slate-900">
+              <div class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+                <h2 class="text-xl font-semibold">Tareas</h2>
+                <div class="flex flex-wrap gap-2">
+                  <select id="filter-status" class="rounded-xl border border-slate/20 px-3 py-2 text-sm">
+                    <option value="">Estado</option>
+                    <option value="pending">Pendiente</option>
+                    <option value="in_progress">En progreso</option>
+                    <option value="completed">Completada</option>
+                    <option value="overdue">Vencida</option>
+                  </select>
+                  <select id="filter-priority" class="rounded-xl border border-slate/20 px-3 py-2 text-sm">
+                    <option value="">Prioridad</option>
                     <option value="low">Baja</option>
                     <option value="medium">Media</option>
                     <option value="high">Alta</option>
                   </select>
+                  <select id="filter-subject" class="rounded-xl border border-slate/20 px-3 py-2 text-sm"></select>
+                  <input id="filter-search" type="text" placeholder="Buscar" class="rounded-xl border border-slate/20 px-3 py-2 text-sm" />
+                  <select id="filter-sort" class="rounded-xl border border-slate/20 px-3 py-2 text-sm">
+                    <option value="">Orden</option>
+                    <option value="due_date">Fecha</option>
+                    <option value="priority">Prioridad</option>
+                    <option value="status">Estado</option>
+                    <option value="created_at">Creacion</option>
+                  </select>
                 </div>
               </div>
-              <div>
-                <label class="text-sm font-medium">Estado</label>
-                <select id="status" class="mt-1 w-full rounded-xl border border-slate/20 px-3 py-2">
+              <div id="task-list" class="mt-5 grid gap-4"></div>
+            </div>
+          </section>
+
+          <section class="rounded-2xl bg-white p-6 shadow-sm dark:bg-slate-900">
+            <h2 class="text-xl font-semibold">Nueva tarea</h2>
+            <form class="mt-4 grid gap-4" id="task-form">
+              <input type="hidden" id="task-id" />
+              <input id="title" type="text" placeholder="Titulo" class="rounded-xl border border-slate/20 px-3 py-2" />
+              <textarea id="description" rows="3" placeholder="Descripcion" class="rounded-xl border border-slate/20 px-3 py-2"></textarea>
+              <select id="subject" class="rounded-xl border border-slate/20 px-3 py-2"></select>
+              <div class="grid gap-3 md:grid-cols-3">
+                <input id="due-date" type="date" class="rounded-xl border border-slate/20 px-3 py-2" />
+                <select id="priority" class="rounded-xl border border-slate/20 px-3 py-2">
+                  <option value="low">Baja</option>
+                  <option value="medium">Media</option>
+                  <option value="high">Alta</option>
+                </select>
+                <select id="status" class="rounded-xl border border-slate/20 px-3 py-2">
                   <option value="pending">Pendiente</option>
-                  <option value="in_progress">En proceso</option>
-                  <option value="finished">Finalizada</option>
+                  <option value="in_progress">En progreso</option>
+                  <option value="completed">Completada</option>
                 </select>
               </div>
-              <div class="flex flex-wrap gap-3">
-                <button
-                  type="submit"
-                  class="rounded-xl bg-accent px-4 py-2 text-sm font-semibold text-white"
-                >
-                  Guardar tarea
-                </button>
-                <button
-                  type="button"
-                  id="reset-form"
-                  class="rounded-xl border border-slate/20 px-4 py-2 text-sm font-semibold"
-                >
-                  Limpiar
-                </button>
+              <div class="flex gap-2">
+                <button class="rounded-xl bg-accent px-4 py-2 text-sm font-semibold text-white">Guardar tarea</button>
+                <button id="reset-form" type="button" class="rounded-xl border border-slate/20 px-4 py-2 text-sm">Limpiar</button>
               </div>
             </form>
-          </div>
+          </section>
         </section>
       </main>
     </div>
+
+    <div id="toast" class="fixed bottom-6 right-6 hidden rounded-xl bg-ink px-4 py-3 text-sm text-white"></div>
 
     <script type="module" src="/src/main.ts"></script>
   </body>

@@ -1,31 +1,36 @@
 # TaskCampus - UX Spec
 
 ## Objetivos de UX
-- Captura rapida de tareas.
-- Visibilidad clara de prioridades y estados.
-- Filtros simples y efectivos.
+- Experiencia moderna, limpia y responsive.
+- Flujos claros para autenticacion y gestion de tareas.
+- Visibilidad inmediata de prioridades, vencidas y progreso.
 
 ## Estructura de la interfaz
-- Header con titulo y estado de conexion.
-- Resumen con 4 tarjetas (total, pendientes, finalizadas, alta prioridad).
-- Lista de tareas con acciones de editar y eliminar.
-- Formulario para crear o actualizar tareas.
+- Pantallas de login y registro.
+- Navbar con toggle de dark mode.
+- Dashboard con tarjetas y graficos.
+- Modulo de asignaturas (listado y formulario).
+- Modulo de tareas (listado, filtros, busqueda, formulario).
+- Estado de conexion y modo offline.
 
 ## Flujos principales
-1. Crear tarea
-   - Completar formulario y guardar.
-2. Editar tarea
-   - Seleccionar editar, cargar datos en formulario, actualizar.
-3. Eliminar tarea
-   - Seleccionar eliminar y refrescar lista.
-4. Filtrar tareas
-   - Usar filtros por estado, prioridad y asignatura.
+1. Registro y login.
+2. Crear y gestionar asignaturas.
+3. Crear, editar y eliminar tareas.
+4. Filtrar, buscar y ordenar tareas.
+5. Revisar dashboard con resumen.
 
 ## Estados de la UI
-- Cargando tareas (mensaje breve o esqueleto simple).
-- Lista vacia con mensaje informativo.
-- Modo local cuando no hay backend.
+- Loading.
+- Error de conexion.
+- Empty state para tareas y asignaturas.
+- Confirmacion al eliminar.
+
+## Dark mode
+- Persistir en localStorage (clave theme).
+- Fallback a preferencia del sistema.
+- Componentes compatibles: navbar, cards, formularios, tablas.
 
 ## Accesibilidad basica
 - Inputs con labels.
-- Contraste legible en tarjetas y botones.
+- Contrastes legibles en ambos temas.

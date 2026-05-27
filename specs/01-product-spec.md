@@ -1,37 +1,42 @@
 # TaskCampus - Product Spec
 
 ## Problema
-Los estudiantes necesitan organizar sus tareas academicas para cumplir fechas de entrega y controlar su avance.
+Los estudiantes necesitan una plataforma moderna para gestionar tareas, asignaturas y estados de avance con autenticacion segura y persistencia real.
 
 ## Objetivo
-Desarrollar una aplicacion web que permita registrar, consultar, actualizar y eliminar tareas academicas.
+Evolucionar TaskCampus a una plataforma web escalable con arquitectura desacoplada, API REST profesional y UX moderna, siguiendo Spec Driven Development y Spec Kit.
 
 ## Usuarios
-Estudiantes universitarios.
+Estudiantes universitarios con multiples asignaturas y tareas.
 
 ## Alcance funcional
-- Registrar tarea con: titulo, descripcion, asignatura, fecha de entrega, prioridad y estado.
-- Listar todas las tareas.
-- Filtrar por estado, prioridad y asignatura.
-- Editar una tarea.
-- Eliminar una tarea.
-- Mostrar resumen: total, pendientes, finalizadas y alta prioridad.
+- Autenticacion JWT: registro, login y perfil.
+- CRUD de asignaturas (subjects).
+- CRUD de tareas asociadas a usuario y asignatura.
+- Filtros avanzados y busqueda global.
+- Ordenamiento por fecha, prioridad y estado.
+- Resumen estadistico para dashboard.
+- Modo oscuro y UI responsive.
+- Persistencia offline cuando no hay API.
 
 ## Historias de usuario
-- Como estudiante quiero crear una tarea con datos completos para organizar mis entregas.
-- Como estudiante quiero ver todas mis tareas para planificar la semana.
-- Como estudiante quiero filtrar tareas por estado o prioridad para enfocarme.
-- Como estudiante quiero editar tareas para actualizar avances.
-- Como estudiante quiero eliminar tareas que ya no aplican.
-- Como estudiante quiero ver un resumen para conocer mi carga academica.
+- Como estudiante quiero registrarme e iniciar sesion para proteger mis tareas.
+- Como estudiante quiero gestionar mis asignaturas para clasificar mis tareas.
+- Como estudiante quiero crear tareas con prioridad y fecha para planificar.
+- Como estudiante quiero filtrar y ordenar tareas para enfocarme.
+- Como estudiante quiero ver un dashboard con estadisticas.
+- Como estudiante quiero usar modo oscuro y ver la app en movil.
 
 ## Criterios de aceptacion
-- Se puede crear una tarea con todos los campos obligatorios.
-- Se listan tareas y se actualiza el resumen.
-- Los filtros funcionan por estado, prioridad y asignatura.
-- Se puede editar y eliminar una tarea existente.
+- Registro y login funcionan con JWT y contraseñas hasheadas.
+- CRUD completo de asignaturas y tareas.
+- Filtros por estado, prioridad, asignatura, busqueda y ordenamiento.
+- Tareas vencidas se marcan como overdue automaticamente.
+- Dashboard muestra conteos y graficos basicos.
+- UI responsive con dark mode persistido.
+- Fallback localStorage si el backend no responde.
 
 ## Fuera de alcance
-- Autenticacion de usuarios.
-- Notificaciones o recordatorios.
-- Reportes avanzados.
+- Notificaciones push.
+- Integraciones externas (calendario, correo).
+- Roles administrativos.

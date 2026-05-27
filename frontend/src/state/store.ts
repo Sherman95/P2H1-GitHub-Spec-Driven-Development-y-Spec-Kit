@@ -1,13 +1,21 @@
+import type { User } from "../types/auth";
+import type { Subject } from "../types/subject";
 import type { Filters, Task } from "../types/task";
 
 export const state = {
   tasks: [] as Task[],
+  subjects: [] as Subject[],
+  user: null as User | null,
+  token: "" as string,
   filters: {
     status: "",
     priority: "",
-    subject: ""
+    subject_id: "",
+    search: "",
+    sort: ""
   } as Filters,
-  useLocal: false
+  useLocal: false,
+  theme: "light"
 };
 
 export const labels = {
@@ -19,6 +27,7 @@ export const labels = {
   status: {
     pending: "Pendiente",
     in_progress: "En proceso",
-    finished: "Finalizada"
+    completed: "Completada",
+    overdue: "Vencida"
   }
 };
