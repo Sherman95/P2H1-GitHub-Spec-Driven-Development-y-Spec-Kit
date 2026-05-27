@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TaskCampus</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-mist text-ink">
+    <div class="min-h-screen">
+      <header class="bg-ink text-white">
+        <div class="mx-auto flex max-w-6xl flex-col gap-4 px-6 py-10 md:flex-row md:items-center md:justify-between">
+          <div>
+            <p class="text-sm uppercase tracking-[0.3em] text-white/70">TaskCampus</p>
+            <h1 class="text-3xl font-semibold md:text-4xl">Gestion de tareas academicas</h1>
+            <p class="mt-2 text-white/80">Organiza tus entregas, prioridades y avances en un solo lugar.</p>
+          </div>
+          <div class="rounded-2xl bg-white/10 px-5 py-4 text-sm text-white/80">
+            <p class="font-semibold text-white">Estado de conexion</p>
+            <p id="connection-status">Verificando...</p>
+          </div>
+        </div>
+      </header>
+
+      <main class="mx-auto flex max-w-6xl flex-col gap-8 px-6 py-10">
+        <section class="grid gap-4 md:grid-cols-4" id="summary-cards">
+          <div class="rounded-2xl bg-white p-5 shadow-sm">
+            <p class="text-sm text-slate">Total tareas</p>
+            <p class="text-2xl font-semibold" id="summary-total">0</p>
+          </div>
+          <div class="rounded-2xl bg-white p-5 shadow-sm">
+            <p class="text-sm text-slate">Pendientes</p>
+            <p class="text-2xl font-semibold" id="summary-pending">0</p>
+          </div>
+          <div class="rounded-2xl bg-white p-5 shadow-sm">
+            <p class="text-sm text-slate">Finalizadas</p>
+            <p class="text-2xl font-semibold" id="summary-finished">0</p>
+          </div>
+          <div class="rounded-2xl bg-white p-5 shadow-sm">
+            <p class="text-sm text-slate">Alta prioridad</p>
+            <p class="text-2xl font-semibold" id="summary-high">0</p>
+          </div>
+        </section>
+
+        <section class="grid gap-6 lg:grid-cols-[1.1fr,0.9fr]">
+          <div class="rounded-2xl bg-white p-6 shadow-sm">
+            <div class="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+              <h2 class="text-xl font-semibold">Tareas registradas</h2>
+              <div class="flex flex-wrap gap-3">
+                <select id="filter-status" class="rounded-xl border border-slate/20 px-3 py-2 text-sm">
+                  <option value="">Estado</option>
+                  <option value="pending">Pendiente</option>
+                  <option value="in_progress">En proceso</option>
+                  <option value="finished">Finalizada</option>
+                </select>
+                <select id="filter-priority" class="rounded-xl border border-slate/20 px-3 py-2 text-sm">
+                  <option value="">Prioridad</option>
+                  <option value="low">Baja</option>
+                  <option value="medium">Media</option>
+                  <option value="high">Alta</option>
+                </select>
+                <input
+                  id="filter-subject"
+                  type="text"
+                  placeholder="Asignatura"
+                  class="rounded-xl border border-slate/20 px-3 py-2 text-sm"
+                />
+              </div>
+            </div>
+
+            <div class="mt-6 grid gap-4" id="task-list"></div>
+          </div>
+
+          <div class="rounded-2xl bg-white p-6 shadow-sm">
+            <h2 class="text-xl font-semibold">Nueva tarea</h2>
+            <p class="text-sm text-slate">Completa los datos para registrar o actualizar.</p>
+
+            <form class="mt-5 grid gap-4" id="task-form">
+              <input type="hidden" id="task-id" />
+              <div>
+                <label class="text-sm font-medium">Titulo</label>
+                <input
+                  id="title"
+                  type="text"
+                  required
+                  class="mt-1 w-full rounded-xl border border-slate/20 px-3 py-2"
+                />
+              </div>
+              <div>
+                <label class="text-sm font-medium">Descripcion</label>
+                <textarea
+                  id="description"
+                  rows="3"
+                  required
+                  class="mt-1 w-full rounded-xl border border-slate/20 px-3 py-2"
+                ></textarea>
+              </div>
+              <div>
+                <label class="text-sm font-medium">Asignatura</label>
+                <input
+                  id="subject"
+                  type="text"
+                  required
+                  class="mt-1 w-full rounded-xl border border-slate/20 px-3 py-2"
+                />
+              </div>
+              <div class="grid gap-4 md:grid-cols-2">
+                <div>
+                  <label class="text-sm font-medium">Fecha de entrega</label>
+                  <input
+                    id="due-date"
+                    type="date"
+                    required
+                    class="mt-1 w-full rounded-xl border border-slate/20 px-3 py-2"
+                  />
+                </div>
+                <div>
+                  <label class="text-sm font-medium">Prioridad</label>
+                  <select id="priority" class="mt-1 w-full rounded-xl border border-slate/20 px-3 py-2">
+                    <option value="low">Baja</option>
+                    <option value="medium">Media</option>
+                    <option value="high">Alta</option>
+                  </select>
+                </div>
+              </div>
+              <div>
+                <label class="text-sm font-medium">Estado</label>
+                <select id="status" class="mt-1 w-full rounded-xl border border-slate/20 px-3 py-2">
+                  <option value="pending">Pendiente</option>
+                  <option value="in_progress">En proceso</option>
+                  <option value="finished">Finalizada</option>
+                </select>
+              </div>
+              <div class="flex flex-wrap gap-3">
+                <button
+                  type="submit"
+                  class="rounded-xl bg-accent px-4 py-2 text-sm font-semibold text-white"
+                >
+                  Guardar tarea
+                </button>
+                <button
+                  type="button"
+                  id="reset-form"
+                  class="rounded-xl border border-slate/20 px-4 py-2 text-sm font-semibold"
+                >
+                  Limpiar
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
