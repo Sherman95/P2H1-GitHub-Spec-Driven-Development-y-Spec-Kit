@@ -6,7 +6,7 @@ export const apiRequest = async (
   token?: string
 ) => {
   const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 3000);
+  const timeout = setTimeout(() => controller.abort(), 60000); // 60 seconds timeout for Render cold starts
   try {
     const headers: Record<string, string> = { "Content-Type": "application/json" };
     if (token) headers.Authorization = `Bearer ${token}`;
