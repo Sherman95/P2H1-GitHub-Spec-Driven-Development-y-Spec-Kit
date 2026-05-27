@@ -1,6 +1,6 @@
 # TaskCampus
 
-Aplicacion web para gestionar tareas academicas con Spec Driven Development y Spec Kit.
+Aplicacion web para gestionar tareas academicas con enfoque Spec Driven Development y Spec Kit.
 
 ## Estructura
 - specs/: especificaciones, plan tecnico y plan de tareas.
@@ -51,7 +51,24 @@ create table if not exists tasks (
 
 > Nota: En GitHub Pages el frontend funciona en modo local (localStorage) si no hay backend disponible.
 
+## Endpoints disponibles
+- GET /tasks
+- POST /tasks
+- PUT /tasks/{id}
+- DELETE /tasks/{id}
+- GET /summary
+
+## Integrantes
+- AZUERO MALDONADO RONALD ALEJANDRO
+
+## Evidencia de ramas y pull requests
+- Crear ramas por fase (por ejemplo: feature/specs, feature/backend, feature/frontend).
+- Abrir pull requests en GitHub y documentar los merges en el historial.
+- Adjuntar el enlace del repositorio como evidencia.
+
 ## Especificaciones
+- specs/01-product-spec.md
+- specs/02-ux-spec.md
+- specs/03-technical-spec.md
+- specs/04-task-plan.md
 - specs/taskcampus-spec.md
-- specs/technical-plan.md
-- specs/task-plan.md
