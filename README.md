@@ -1,42 +1,57 @@
-# Pokedex Atlas - P2H1
+# TaskCampus
 
-App en React + Vite creada con Spec Driven Development y Spec Kit. Consume PokeAPI para listar pokemon, ver detalles y armar un equipo persistido en localStorage.
+Aplicacion web para gestionar tareas academicas con Spec Driven Development y Spec Kit.
 
-## Demo
-- GitHub Pages: https://sherman95.github.io/P2H1-GitHub-Spec-Driven-Development-y-Spec-Kit/
+## Estructura
+- specs/: especificaciones, plan tecnico y plan de tareas.
+- frontend/: Vite + TypeScript + Tailwind.
+- backend/: FastAPI + persistencia JSON con opcion de Supabase.
 
-## Funcionalidades
-- Lista de pokemon (60) con busqueda en tiempo real.
-- Detalle con imagen oficial, tipos, altura, peso, habilidades y stats.
-- Equipo local con favoritos y persistencia en localStorage.
-- Estados de carga y error.
+## Requisitos
+- Node.js 18+
+- Python 3.11+
 
-## Stack
-- React + Vite
-- Fetch API
-- gh-pages para deploy
+## Backend (FastAPI)
+1. Crear entorno virtual y activar.
+2. Instalar dependencias:
+   - pip install -r requirements.txt
+3. (Opcional) Configurar Supabase:
+   - Copiar backend/.env.example a backend/.env
+   - Completar SUPABASE_URL y SUPABASE_ANON_KEY
+4. Ejecutar:
+   - uvicorn app.main:app --reload --port 8000
+
+### Tabla Supabase sugerida
+```sql
+create table if not exists tasks (
+  id uuid primary key default gen_random_uuid(),
+  title text not null,
+  description text not null,
+  subject text not null,
+  due_date date not null,
+  priority text not null,
+  status text not null,
+  created_at timestamptz not null,
+  updated_at timestamptz not null
+);
+```
+
+## Frontend (Vite)
+1. Entrar a frontend/ e instalar dependencias:
+   - npm install
+2. (Opcional) API base:
+   - Copiar frontend/.env.example a frontend/.env
+3. Ejecutar:
+   - npm run dev
+
+## GitHub Pages (gh-pages)
+1. Entrar a frontend/ y ejecutar:
+   - npm run deploy
+2. En GitHub: Settings -> Pages -> Branch: gh-pages / root.
+
+> Nota: En GitHub Pages el frontend funciona en modo local (localStorage) si no hay backend disponible.
 
 ## Especificaciones
-Las especificaciones y el plan de trabajo estan en el folder specs:
-- specs/01-product-spec.md
-- specs/02-ux-spec.md
-- specs/03-technical-spec.md
-- specs/04-task-plan.md
-
-## Scripts
-- npm run dev: desarrollo local
-- npm run build: build de produccion
-- npm run deploy: publica a GitHub Pages
-
-## Desarrollo local
-1. npm install
-2. npm run dev
-
-## Deploy a GitHub Pages
-1. npm run deploy
-2. En GitHub: Settings -> Pages -> Branch: gh-pages / root
-
-## API
-- Lista: https://pokeapi.co/api/v2/pokemon?limit=60
-- Detalle: https://pokeapi.co/api/v2/pokemon/{id}
-- Sprites: https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{id}.png
+- specs/taskcampus-spec.md
+- specs/technical-plan.md
+- specs/task-plan.md
